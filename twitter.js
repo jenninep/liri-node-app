@@ -2,11 +2,11 @@ var request = require('request');
 var keys = require("./keys.js");
 var Twitter = require("twitter");
 
-function getTweets() {
+function getTweets(screenName) {
 
 	var params = {
-		screen_name: '@keepMemorabilia',
-		count: 20
+		"screen_name": screenName,
+		"count": 20
 	};
 
 	var client = new Twitter ({
