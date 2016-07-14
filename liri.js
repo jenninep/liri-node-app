@@ -6,12 +6,14 @@ var tweets = require('./twitter');
 // var movieModule = require('./omdb');
 // var imported_movie_command = movieModule.movie_command;
 var imported_movie_command = require('./omdb').movie_command;
+var imported_spotify_this_song = require('./spotify').spotify_this_song;
 
 // movie-this
 // ************Structure of the console command**********
 // node liri.js movie-this '<movie name here>'
 // getting the command arg
 var command = process.argv[2];
+var commandArg = process.argv[3];
 
 // confirm that console command works properly
 console.log(command);
@@ -25,7 +27,7 @@ console.log(command);
 // confirms that movie-this is the command/process.argv[2]
 if (command === 'movie-this') {
     // setting movie title
-    var mTitle = process.argv[3];
+    var mTitle = commandArg;
     console.log("the movie title is ", mTitle);
     // invoke imported_movie_command with mTitle
     imported_movie_command(mTitle);
@@ -34,7 +36,11 @@ if (command === 'movie-this') {
     // console.log('successfully called movie function');
 } else if (command === 'twitter') {
 	tweets.getTweets(process.argv[3]);
-}
+}else if (command === 'spotify_this_song') {
+	var songName = commandArg;
+	imported_spotify_this_song(songName);
+
+};
 
 // This will output the following information to your terminal/bash window:
 
