@@ -1,12 +1,30 @@
 // At the top of the liri.js file, write the code you need
 // to grab the data from keys.js. Then store the keys in a variable.
 // 
+
+// node liri.js do-what-it-says
+
+// Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
+// It should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.
+// Feel free to change the text in that document to test out the feature for other commands.
+
+
+var fs = require('fs');
 var keys = require('./keys').twitterKeys;
 var tweets = require('./twitter');
-// var movieModule = require('./omdb');
-// var imported_movie_command = movieModule.movie_command;
 var imported_movie_command = require('./omdb').movie_command;
 var imported_spotify_this_song = require('./spotify').spotify_this_song;
+
+fs.readFile('random.txt', 'utf8', function (err, data){
+	if(err) {
+		return console.error(err);
+	}
+	var randomArray = data.split(',');
+	console.log(imported_spotify_this_song(randomArray[1]));
+})
+// var movieModule = require('./omdb');
+// var imported_movie_command = movieModule.movie_command;
+
 
 // movie-this
 // ************Structure of the console command**********
@@ -16,7 +34,7 @@ var command = process.argv[2];
 var commandArg = process.argv[3];
 
 // confirm that console command works properly
-console.log(command);
+// console.log(command);
 
 
 
@@ -42,55 +60,3 @@ if (command === 'movie-this') {
 
 };
 
-// This will output the following information to your terminal/bash window:
-
-// Title of the movie.
-// Year the movie came out.
-// IMDB Rating of the movie.
-// Country where the movie was produced.
-// Language of the movie.
-// Plot of the movie.
-// Actors in the movie.
-// Rotten Tomatoes Rating.
-// Rotton Tomatoes URL
-// 
-// make an omdb request via request
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// ************* WITHOUT EXPORTS ***********///
-// 
-//var request = require('request');
-
-//function getMovie(title) {
-//// var title;
-//// var year;
-//// var rating;
-
-//var titleParam = title;
-//// /assugning request url using that title
-//var omdbUrl = "http://www.omdbapi.com/?t=" + title;
-//request(omdbUrl, function(error, response, body) {
-// if (!error && response.statusCode == 200) {
-//     console.log(body) // Show the HTML for the Google homepage. 
-// }
-//})
-//// body...
-// }
-
-
-//if (command === 'movie-this') {
-//// setting movie title
-//var mTitle = process.argv[3];
-//console.log("the movie title is ", mTitle);
-//// invoke imported_movie_command with mTitle
-//getMovie(mTitle);
-
-
-//console.log('successfully called movie function');
-// }
-// ************* WITHOUT EXPORTS ***********///

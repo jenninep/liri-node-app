@@ -29,9 +29,9 @@ var spotify = require('spotify');
 // node liri.js spotify-this-song '<song name here>'
 function spotifySong(songParam) {
     if (!songParam) {
-        songParam === "The Sign";
+        songParam = "The Sign";
     }
-
+console.log(songParam);
     // var artist;
     // var songNAme;
     // var link;
@@ -51,7 +51,7 @@ function spotifySong(songParam) {
         console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
         console.log("Preview URL: " + data.tracks.items[0].preview_url);
 
-
+        // console.log(JSON.stringify(data, null, 2));
 
 
     });
